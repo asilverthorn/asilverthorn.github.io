@@ -1,0 +1,14 @@
+{
+    "name": "Tracker for Final Fantasy 6 Worlds Collide",
+    "packages": [
+        {
+            "name": "FFVI Worlds Collide",
+            "author": "Eatitup_86, Anguirel, delassa, asilverthorn",
+            "game_name": "Final Fantasy VI",
+            "version": "1.1.0.2",
+            "uid": "ff6wc",
+            "flags": ["map",  "autotracker"],
+            "link": "https://github.com/asilverthorn/FF6-Worlds-Collide-EmoTracker-pack/archive/refs/tags/v1.1.0.2.zip"
+        }
+    ]
+}
