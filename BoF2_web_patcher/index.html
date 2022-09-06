@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Breath of Fire 2 ROM Patcher</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/ext/awsm_theme_mischka.min.css">
+</head>
+
+<body>
+    <header>
+    <h1>Breath of Fire 2 SNES ROM Patcher</h1>
+    </header>
+    <main>
+        <article>
+            <section>
+                <p>This utility will patch a US Breath of Fire 2 SNES ROM (Breath of Fire II (USA).sfc) with the selected modifications. It disables the first-time-run check of the Retranslation Patch to allow multiple changes to be applied at once.</p>
+                <p>The default selections are recommended.</p>
+            </section>
+            <section>
+                <form enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Patches</legend>
+                        <label>
+                            <input id="retranslation" type="checkbox" checked>
+                            Apply <a href="https://www.romhacking.net/translations/1384/">d4s/Ryusui's Retranslation Patch</a>
+                        </label>
+                        <label for="maeson">Apply <a href="https://www.romhacking.net/hacks/3272/">Maeson Rebalance Patch</a> (<a href="https://www.romhacking.net/hacks/snes/patches/3272readme.txt">Readme</a>)</label>
+                        <select id="maeson">
+                            <option>None</option>
+                            <option selected>Ryu Spells A (Utility + Offence)</option>
+                            <option>Ryu Spells B (Just Utility)</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Additional Mods</legend>
+                        <label>
+                            <input id="reduceDungeonEncRate" type="checkbox" checked>
+                            Reduce Dungeon Encounter Rate
+                        </label>
+                        <!--label>
+                            <input id="warpLvl1" type="checkbox" checked>
+                            Ryu Starts with Warp
+                        </label-->
+                    </fieldset>
+                    <fieldset>
+                        <legend>Select and Generate ROM</legend>
+                        <input id="romFile" type="file">
+                        <div for="romFile" id="romError" style="display: none;"></div>
+                        <button type="button" id="generate" disabled=true>Generate</button>
+                    </fieldset>
+                </form>
+            </section>
+            <section>
+                <p>Utility assembled by <a href="https://github.com/asilverthorn">asilverthorn</a>.
+            </section>
+        </article>
+    </main>
+
+    <script src="/js/ext/jszip.min.js"></script>
+    <script src="/js/ext/FileSaver.min.js"></script>
+    <script src="/js/RomFile.js"></script>
+    <script src="/js/FileUtils.js"></script>
+    <script src="/js/IpsPatcher.js"></script>
+    <script src="/js/BoF2Patcher.js"></script>
+    <script>
+        window.onload = function() {
+            let romFileInput = document.getElementById("romFile")
+            let generateBtn = document.getElementById("generate")
+            var myRomFile = new RomFile(
+                romFileInput, 
+                document.getElementById("romError"), 
+                generateBtn
+            );
+
+            var myBof2Patcher = new BoF2Patcher(myRomFile);
+
+            romFileInput.addEventListener('change', myRomFile.read.bind(myRomFile))
+            generateBtn.addEventListener('click', myBof2Patcher.generate.bind(myBof2Patcher))
+        };
+    </script>
+</body>
+</html>
+
+
