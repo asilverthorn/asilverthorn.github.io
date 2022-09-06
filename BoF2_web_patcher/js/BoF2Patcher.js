@@ -24,7 +24,7 @@ class BoF2Patcher {
 
     async applyRetranslation() {
         if(this.retranslationElement.checked) {
-            let patcher = new IpsPatcher('/patch/retrans/Breath of Fire 2 Retranslation (v1.2b).ips')
+            let patcher = new IpsPatcher('patch/retrans/Breath of Fire 2 Retranslation (v1.2b).ips')
             await patcher.apply(this.romFile)
 
             /**
@@ -40,9 +40,9 @@ class BoF2Patcher {
     }
 
     async applyMaeson() {
-        let path = '/patch/maeson/orig'
+        let path = 'patch/maeson/orig'
         if(this.retranslationElement.checked) {
-            path = '/patch/maeson/retrans'
+            path = 'patch/maeson/retrans'
         }
         if(this.maesonElement.selectedIndex != 0) { /* not None */ 
             if(this.maesonElement.selectedIndex == 1) { /* A */
